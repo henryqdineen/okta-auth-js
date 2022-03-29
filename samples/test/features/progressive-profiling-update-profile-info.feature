@@ -40,6 +40,6 @@ Feature: Update Profile Information
       And the "age" field is available for input
     When she changes the "age" field to "Thirty"
       And she clicks the "save profile" button
-    Then she sees a banner message for "profile" that "Invalid value data type for property 'age'"
+    Then she sees a banner message for "profile" that "Api validation failed: forUpdate"
       And the "age" field shows the previous profile value
     

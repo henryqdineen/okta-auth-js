@@ -20,7 +20,7 @@ Feature: Managing Phone Numbers
       And she sees a tip message for "identifiers" that "User identifiers are separated because changes require verification."
     When she clicks the "add phone number" button
     Then she sees a modal popup to "add phone number"
-    When she fills in her phone number
+    When she fills in her "phone number"
       And she submits the form
     Then the form changes to receive an input for the verification code
     When she inputs the correct code from her "SMS"
@@ -39,7 +39,7 @@ Feature: Managing Phone Numbers
       And she sees a tip message for "identifiers" that "User identifiers are separated because changes require verification."
     When she clicks the "add phone number" button
     Then she sees a modal popup to "add phone number"
-    When she fills in her phone number
+    When she fills in her "phone number"
       And she submits the form
     Then the form changes to receive an input for the verification code
     When she inputs an incorrect code
