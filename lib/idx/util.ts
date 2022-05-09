@@ -4,7 +4,7 @@ import { RemediationValues, Remediator, RemediatorConstructor } from './remediat
 import { GenericRemediator } from './remediators/GenericRemediator';
 import { proceed } from './proceed';
 import { IdxFeature, NextStep, RemediateOptions, RemediationResponse } from './types';
-import { IdxMessage, IdxRemediation, IdxRemediationValue, IdxResponse, isIdxResponse } from './types/idx-js';
+import { IdxMessage, IdxRemediation, IdxRemediationValue, IdxResponse } from './types/idx-js';
 import { OktaAuthInterface } from '../types';
 
 export function isTerminalResponse(idxResponse: IdxResponse) {
@@ -251,17 +251,11 @@ export function getNextStep(
   };
 }
 
-export function handleIdxError(authClient: OktaAuthInterface, e, remediator?): RemediationResponse {
-  // Handle idx messages
-  let idxResponse = isIdxResponse(e) ? e : null;
-  if (!idxResponse) {
-    // Thrown error terminates the interaction with idx
-    throw e;
-  }
-  idxResponse = {
-    ...idxResponse,
-    requestDidSucceed: false
-  };
+export function handleFailedResponse(
+  authClient: OktaAuthInterface,
+  idxResponse: IdxResponse,
+  remediator?: Remediator
+): RemediationResponse {
   const terminal = isTerminalResponse(idxResponse);
   const messages = getMessagesFromResponse(idxResponse);
   if (terminal) {
