@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MyAccount Profile API getProfile can get profile with "okta.myAccount.read" in token scopes 1`] = `
+exports[`MyAccount Profile API getProfile can get profile with "okta.myAccount.profile.read" in token scopes 1`] = `
 Object {
   "_http": Object {
     "headers": Any<Object>,
@@ -13,7 +13,7 @@ Object {
 }
 `;
 
-exports[`MyAccount Profile API getProfileSchema can get profile schema with "okta.myAccount.read" in token scopes 1`] = `
+exports[`MyAccount Profile API getProfileSchema can get profile schema with "okta.myAccount.profile.read" in token scopes 1`] = `
 Object {
   "_http": Object {
     "headers": Any<Object>,

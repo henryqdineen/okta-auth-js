@@ -71,7 +71,7 @@ describe('sendRequest', () => {
     } catch (err) {
       expect(err).toBeInstanceOf(AuthApiError);
       expect((err as any).errorSummary).toEqual('insufficient_authentication_context');
-      expect((err as any).errorCauses).toEqual(['The access token requires additional assurance to access the resource']);
+      expect((err as any).errorCauses).toEqual([{ errorSummary: 'The access token requires additional assurance to access the resource' }]);
       expect((err as any).meta.max_age).toEqual(900);
     }
   });

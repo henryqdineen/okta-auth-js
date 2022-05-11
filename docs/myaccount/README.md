@@ -10,8 +10,8 @@ Certain token scopes will be needed to gain the permission to read/manage the ac
 
 **profile:**
 ```
-okta.myAccount.read
-okta.myAccount.manage
+okta.myAccount.profile.read
+okta.myAccount.profile.manage
 ```
 
 **email:**

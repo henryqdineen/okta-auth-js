@@ -158,7 +158,8 @@ describe('MyAccount Phone API', () => {
         expect(challenge).toMatchSnapshot({
           _http: {
             headers: expect.any(Object),
-          }
+          },
+          headers: expect.any(Object),
         });
       } catch (err) {
         // may failure due to - You have reached the limit of sms requests, please try again later.

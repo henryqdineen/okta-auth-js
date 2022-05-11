@@ -740,6 +740,7 @@ describe('idx/interact', () => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
+          withCredentials: true,
           args: ({
             client_id: 'authClient-clientId',
             scope: 'authClient',
@@ -748,7 +749,7 @@ describe('idx/interact', () => {
             code_challenge_method: 'tp-codeChallengeMethod',
             state: 'authClient-state',
             max_age: 900
-          })
+          }),
         });
         expect(res).toEqual({
           'interactionHandle': 'idx-interactionHandle',
@@ -765,6 +766,7 @@ describe('idx/interact', () => {
               'authClient',
             ],
             'state': 'authClient-state',
+            'withCredentials': true,
             'maxAge': 900
           },
           'state': 'authClient-state',

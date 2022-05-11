@@ -24,6 +24,7 @@ Object {
     "headers": Any<Object>,
     "status": 200,
   },
+  "headers": Any<Object>,
 }
 `;
 
@@ -70,6 +71,29 @@ Object {
   "_http": Object {
     "headers": Any<Object>,
     "status": 200,
+  },
+  "headers": Object {
+    "cache-control": "no-cache, no-store",
+    "connection": "close",
+    "content-security-policy-report-only": "frame-ancestors 'self'",
+    "content-type": "application/json",
+    "date": "Wed, 11 May 2022 00:52:44 GMT",
+    "expect-ct": "report-uri=\\"https://oktaexpectct.report-uri.com/r/t/ct/reportOnly\\", max-age=0",
+    "expires": "0",
+    "p3p": "CP=\\"HONK\\"",
+    "pragma": "no-cache",
+    "public-key-pins-report-only": "pin-sha256=\\"r5EfzZxQVvQpKo3AgYRaT7X2bDO/kj3ACwmxfdT2zt8=\\"; pin-sha256=\\"MaqlcUgk2mvY/RFSGeSwBRkI+rZ6/dxe/DuQfBT/vnQ=\\"; pin-sha256=\\"72G5IEvDEWn+EThf3qjR7/bQSWaS2ZSLqolhnO6iyJI=\\"; pin-sha256=\\"rrV6CLCCvqnk89gWibYT0JO6fNQ8cCit7GGoiVTjCOg=\\"; max-age=60; report-uri=\\"https://okta.report-uri.com/r/default/hpkp/reportOnly\\"",
+    "server": "nginx",
+    "set-cookie": "sid=\\"\\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, autolaunch_triggered=\\"\\"; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/, JSESSIONID=853DE69D022F062416117D29D7E4DE6D; Path=/; Secure; HttpOnly",
+    "strict-transport-security": "max-age=315360000; includeSubDomains",
+    "transfer-encoding": "chunked",
+    "x-content-type-options": "nosniff",
+    "x-okta-request-id": "YnsI23evx_wj_ycjppZJiwAABLw",
+    "x-rate-limit-limit": "600",
+    "x-rate-limit-remaining": "578",
+    "x-rate-limit-reset": "1652230406",
+    "x-robots-tag": "noindex,nofollow",
+    "x-xss-protection": "0",
   },
 }
 `;

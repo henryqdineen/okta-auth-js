@@ -236,7 +236,7 @@ ___
 
 ▸ **getProfile**(`oktaAuth`, `options?`): `Promise`<[`ProfileTransaction`](../classes/types.ProfileTransaction.md)\>
 
-**`scope:`** okta.myaccount.read
+**`scope:`** okta.myaccount.profile.read
 
 #### Parameters
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **getProfileSchema**(`oktaAuth`, `options?`): `Promise`<[`ProfileSchemaTransaction`](../classes/types.ProfileSchemaTransaction.md)\>
 
-**`scope:`** okta.myaccount.read
+**`scope:`** okta.myaccount.profile.read
 
 #### Parameters
 
@@ -328,7 +328,7 @@ ___
 
 ▸ **updateProfile**(`oktaAuth`, `options?`): `Promise`<[`ProfileTransaction`](../classes/types.ProfileTransaction.md)\>
 
-**`scope:`** okta.myaccount.manage
+**`scope:`** okta.myaccount.profile.manage
 
 #### Parameters
 

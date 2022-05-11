@@ -66,15 +66,9 @@ http://localhost:8080/flow/{flowMethod}
 
 #### Profile Management
 
-The profile section can be accessed after user login, it's managed with `/myaccount` api.
+After login, end users can access/manage own profile via [MyAccount API](/docs/myaccount/README.md). 
 
-Required scopes:
-
-```
-okta.myAccount.read 
-
-okta.myAccount.manage
-```
+The MyAccount API provides user-scoped endpoints that don’t require admin tokens. End users only need an active user session to update their email and phone authenticators.
 
 #### Support Other Authenticators/Remediations
 

@@ -100,7 +100,7 @@ export async function sendRequest<T extends BaseTransaction> (
           { 
             errorSummary: error,
             // eslint-disable-next-line camelcase
-            errorCauses: [error_description]
+            errorCauses: [{ errorSummary: error_description }]
           }, 
           errorResp, 
           // eslint-disable-next-line camelcase

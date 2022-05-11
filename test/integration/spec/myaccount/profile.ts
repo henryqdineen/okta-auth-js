@@ -4,12 +4,12 @@ import { createClient, signinAndGetTokens } from '../../util';
 describe('MyAccount Profile API', () => {
 
   describe('getProfile', () => {
-    it('can get profile with "okta.myAccount.read" in token scopes', async () => {
+    it('can get profile with "okta.myAccount.profile.read" in token scopes', async () => {
       const client = createClient({});
       const scopes = [
         'openid', 
         'profile', 
-        'okta.myAccount.read'
+        'okta.myAccount.profile.read'
       ];
       const { 
         tokens: { 
@@ -30,12 +30,12 @@ describe('MyAccount Profile API', () => {
   });
 
   describe('updateProfile', () => {
-    it('can update profile with "okta.myAccount.manage" in token scopes', async () => {
+    it('can update profile with "okta.myAccount.profile.manage" in token scopes', async () => {
       const client = createClient({});
       const scopes = [
         'openid', 
         'profile', 
-        'okta.myAccount.manage'
+        'okta.myAccount.profile.manage'
       ];
       const { 
         tokens: { 
@@ -62,12 +62,12 @@ describe('MyAccount Profile API', () => {
   });
 
   describe('getProfileSchema', () => {
-    it('can get profile schema with "okta.myAccount.read" in token scopes', async () => {
+    it('can get profile schema with "okta.myAccount.profile.read" in token scopes', async () => {
       const client = createClient({});
       const scopes = [
         'openid', 
         'profile', 
-        'okta.myAccount.read'
+        'okta.myAccount.profile.read'
       ];
       const { 
         tokens: { 

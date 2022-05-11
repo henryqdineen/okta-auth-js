@@ -11,8 +11,8 @@ export default {
     'profile', 
     'email', 
     'offline_access', 
-    'okta.myAccount.read', 
-    'okta.myAccount.manage',
+    'okta.myAccount.profile.read', 
+    'okta.myAccount.profile.manage',
     'okta.myAccount.email.manage',
     'okta.myAccount.phone.manage'
   ],
