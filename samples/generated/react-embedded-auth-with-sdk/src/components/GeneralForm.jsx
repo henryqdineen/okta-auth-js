@@ -16,37 +16,6 @@ import { formTransformer } from '../formTransformer';
 import { capitalizeFirstLetter, getMessageVariant } from '../util';
 import Spinner from './Spinner';
 
-export function mapInputValuesToPayload(inputs, values) {
-  const fn = (inputs, values, nameTracker) => {
-    const res = {};
-    for (const input of inputs) {
-      const { name, value, options } = input;
-      
-      if (name === 'authenticator') {
-        const key = values.authenticator;
-        res[name] = options
-          .find(({ relatesTo }) => relatesTo.key === key)
-          .value
-          .reduce((acc, { name, value }) => {
-            acc[name] = value;
-            return acc;
-          }, {});
-        continue;
-      }
-
-      const combinedName = nameTracker ? `${nameTracker}.${name}` : name;
-      if (Array.isArray(value)) {
-        res[name] = fn(value, values, combinedName);
-      } else {
-        res[name] = values[combinedName];
-      }
-    }
-    return res;
-  };
-
-  return fn(inputs, values, '');
-}
-
 const GeneralForm = () => {
   const { oktaAuth } = useOktaAuth();
   const { transaction, setTransaction } = useIdxTransaction();
@@ -64,8 +33,7 @@ const GeneralForm = () => {
     e.preventDefault();
 
     setProcessing(true);
-    const payload = mapInputValuesToPayload(transaction.nextStep.inputs, inputValues);
-    const newTransaction = await oktaAuth.idx.proceed(payload);
+    const newTransaction = await oktaAuth.idx.proceed(inputValues);
     setTransaction(newTransaction);
     setInputValues({});
     setProcessing(false);
@@ -76,10 +44,10 @@ const GeneralForm = () => {
     setTransaction(newTransaction);
   };
 
-  const handleRecoverPassword = recoverPasswordFn => async (e) => {
+  const handleRecoverPassword = async (e) => {
     e.preventDefault();
     setProcessing(true);
-    const newTransaction = await recoverPasswordFn();
+    const newTransaction = await oktaAuth.idx.recoverPassword();
     setTransaction(newTransaction);
     setProcessing(false);
   };
@@ -88,12 +56,12 @@ const GeneralForm = () => {
     return <Spinner />;
   }
 
-  const { nextStep, messages, availableSteps } = transaction;
+  const { nextStep, messages, actions, availableSteps } = transaction;
   const { name, canSkip } = nextStep;
-  const recoverPasswordFn = availableSteps.find(step => step.name === 'currentAuthenticator-recover')?.action;
+  const canRecoverPassword = !!actions?.['currentAuthenticator-recover'];
   const idps = availableSteps.filter(step => step.name === 'redirect-idp');
   const form = formTransformer(nextStep)({} /* initial form value */);
-  const { inputs, selects, text, image } = form;
+  const { inputs, select, text, image } = form;
 
   return (
     <Box padding="m">
@@ -114,14 +82,14 @@ const GeneralForm = () => {
         <Form.Main>
           {text && <div>{text.value}</div>}
           {image && <img src={image.src} />}
-          {selects && selects.map(select => (
-            <Select key={select.name} label={select.label} name={select.name} onChange={handleChange}>
+          {select && (
+            <Select label={select.label} name={select.name} onChange={handleChange}>
               <Select.Option key="" value="">---</Select.Option>
-              {select.options.map(({ relatesTo, label }) => (
-                <Select.Option key={relatesTo.key} value={relatesTo.key}>{label}</Select.Option>
+              {select.options.map(({ key, label }) => (
+                <Select.Option key={key} value={key}>{label}</Select.Option>
               ))}
             </Select>
-          ))}
+          )}
           {inputs && inputs.map((input) => {
             const { label, name, type, required } = input;
             const Comp = type === 'checkbox' ? Checkbox : TextInput;
@@ -143,9 +111,9 @@ const GeneralForm = () => {
           <Box paddingTop="s" paddingBottom="s">
             <Button wide type="submit" disabled={processing}>Submit</Button>
           </Box>
-          {!!recoverPasswordFn && (
+          {canRecoverPassword && (
             <Box paddingTop="s" paddingBottom="s">
-              <Link href="#" name="forgotPassword" onClick={handleRecoverPassword(recoverPasswordFn)}>Forgot password</Link>
+              <Link href="#" name="forgotPassword" onClick={handleRecoverPassword}>Forgot password</Link>
             </Box>
           )}
           {idps.length > 0 && (

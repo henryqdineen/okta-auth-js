@@ -32,22 +32,9 @@ const oktaAuth = (() => {
   return new OktaAuth(Object.assign({}, oidcConfig, {
     state,
     recoveryToken,
-    idx: { // configs in this section are still in beta
-      useGenericRemediator: false,
-    },
     // enable dynamic config app config in testing
     ...(issuer && { issuer }),
     ...(clientId && { clientId }),
-    // temp interceptor to workaround /myaccount api browser cors issue
-    // TODO: remove once fix is released in prod
-    httpRequestInterceptors: [
-      function(options) {
-        if (options.url.includes('/myaccount')) {
-          const baseUrl = issuer || oidcConfig.issuer;
-          options.url = options.url.replace(baseUrl, `${window.location.origin}/myaccount`);
-        }
-      }
-    ]
   }));
 })();
 
