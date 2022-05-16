@@ -13,7 +13,7 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { OktaAuthInterface } from '../../../types';    // auth-js/types
+import { OktaAuthInterface, IdxRemediation } from '../../../types';    // auth-js/types
 import { generateRemediationFunctions } from './remediationParser';
 import generateIdxAction from './generateIdxAction';
 import { JSONPath } from 'jsonpath-plus';
@@ -99,7 +99,7 @@ const convertRemediationAction = (authClient: OktaAuthInterface, remediation, to
       action: actionFn,
     };
   }
-  
+
   return remediation;
 };
 
